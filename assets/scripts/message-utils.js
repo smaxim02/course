@@ -2,6 +2,8 @@ const ANALYTIC_BOT_TOKEN = "7766125760:AAENa5zIjyAQu3UOeP7BBgooRw2DYeiRPSI";
 const ANALYTIC_CHAT_ID = "-1002190658740";
 const MANAGER_CHAT_URL = "http://t.me/mustage_manager";
 const ACADEMY_BOT_URL = "https://t.me/mustage_academy_bot";
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbySgvfsRCY7xr4cvsNZzXSy_LMDLRXuueVjtA7GkF046wMCvV-eDbqS-GpQ_22onGPb7A/exec";
 
 function redirectToChatClick() {
   const params = getQueryParams();
@@ -9,6 +11,7 @@ function redirectToChatClick() {
   message += getParamString(params);
 
   sendMessage(message);
+  sendToGoogleScript(params);
   redirectTo(MANAGER_CHAT_URL, params.refId);
 }
 
@@ -18,6 +21,7 @@ function redirectToBotClick() {
   message += getParamString(params);
 
   sendMessage(message);
+  sendToGoogleScript(params);
   redirectTo(ACADEMY_BOT_URL, params.refId);
 }
 
@@ -33,7 +37,14 @@ $("#register_form").submit((event) => {
   const params = getQueryParams();
   message += getParamString(params);
 
+  console.log("message", message);
   sendMessage(message, true);
+  sendToGoogleScript({
+    name: form[0].value,
+    phone: form[1].value,
+    username: form[2].value,
+    ...params,
+  });
 });
 
 function getQueryParams() {
@@ -48,6 +59,7 @@ function getQueryParams() {
   params.sub6 = searchParams.get("sub6");
   params.sub7 = searchParams.get("sub7");
   params.sub8 = searchParams.get("sub8");
+  params.fbp = searchParams.get("fbp");
   return params;
 }
 
@@ -85,6 +97,27 @@ function sendMessage(message, isRedirect = false) {
       console.error(error, xhr);
     },
   });
+}
+
+/**
+ * Send data to Google Apps Script
+ * @param {*} data
+ */
+function sendToGoogleScript(data) {
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log("Data sent to Google Sheet");
+    })
+    .catch((error) => {
+      console.error("Error sending data to Google Sheet:", error);
+    });
 }
 
 /**
