@@ -1,9 +1,11 @@
-const ANALYTIC_BOT_TOKEN = "7766125760:AAENa5zIjyAQu3UOeP7BBgooRw2DYeiRPSI";
-const ANALYTIC_CHAT_ID = "-1002190658740";
+// const ANALYTIC_BOT_TOKEN = "7766125760:AAENa5zIjyAQu3UOeP7BBgooRw2DYeiRPSI";
+const ANALYTIC_BOT_TOKEN = "7697839478:AAGlCL5ro6-2T59xvwN1xhDjUtc-J7VoC1o";
+const ANALYTIC_CHAT_ID = "-1002333617735";
+// const ANALYTIC_CHAT_ID = "-1002190658740";
 const MANAGER_CHAT_URL = "http://t.me/mustage_manager";
 const ACADEMY_BOT_URL = "https://t.me/mustage_academy_bot";
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbzA-P7oxUAd9LSwe4PCKRzwocMd5djwUkMwXTD-8jlsu8Bv7IwItH3DbLtJOO6AMmD4Og/exec";
+  "https://script.google.com/macros/s/AKfycbyOBtVC7oRXRaRowePBYLua2Im9eyj_9HF1MD_zl_-yWUSppb6hOaprXhMvOV-9tyWgxw/exec";
 
 function redirectToChatClick() {
   const params = getQueryParams();
@@ -11,7 +13,7 @@ function redirectToChatClick() {
   message += getParamString(params);
 
   sendMessage(message);
-  sendToGoogleScript(params);
+  sendToGoogleScript({ message: "Пользователь перешёл в чат:", ...params });
   redirectTo(MANAGER_CHAT_URL, params.refId);
 }
 
@@ -21,7 +23,7 @@ function redirectToBotClick() {
   message += getParamString(params);
 
   sendMessage(message);
-  sendToGoogleScript(params);
+  sendToGoogleScript({ message: "Пользователь перешёл в бот:", ...params });
   redirectTo(ACADEMY_BOT_URL, params.refId);
 }
 
@@ -68,7 +70,7 @@ $("#register_form").submit((event) => {
   }
 
   // Валідація нікнейму
-  const nicknameRegex = /^@([a-zA-Z0-9_]{5,32})$/;
+  const nicknameRegex = /^@([a-zA-Z0-9_]{3,32})$/;
   if (!nickname.value) {
     nickname.classList.add("error");
     nicknameError.classList.add("error-visible");
@@ -76,7 +78,7 @@ $("#register_form").submit((event) => {
   } else if (!nicknameRegex.test(nickname.value)) {
     nickname.classList.add("error");
     nicknameError.classList.add("error-visible");
-    errorMessages.push("Нікнейм має бути у форматі @nickname і довжиною від 5 до 32 символів");
+    errorMessages.push("Нікнейм має бути у форматі @nickname і довжиною від 3 до 32 символів");
   }
 
   if (errorMessages.length > 0) {
@@ -95,12 +97,13 @@ $("#register_form").submit((event) => {
 
   console.log("message", message);
   sendToGoogleScript({
+    message: "Пользователь отправил форму:",
     name: form[0].value,
     phone: form[1].value,
     username: form[2].value,
     ...params,
   });
-  // sendMessage(message, true);
+  sendMessage(message, true);
 });
 
 function getQueryParams() {
@@ -145,12 +148,19 @@ function sendMessage(message, isRedirect = false) {
     contentType: false,
     success: (response) => {
       if (isRedirect) {
-        window.location.href = "confirm.html";
+        const currentParams = window.location.search;
+
+        const newUrl = `confirm.html${currentParams}`;
+
+        window.location.href = newUrl;
       }
     },
     error: (xhr, status, error) => {
       console.log("Your form was not sent successfully.");
       console.error(error, xhr);
+
+      const errorElement = document.getElementById("form-error");
+      errorElement.style.display = "block";
     },
   });
 }
