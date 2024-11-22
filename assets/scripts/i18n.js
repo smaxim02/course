@@ -62,6 +62,12 @@ $(async function () {
       resources: {
         uk: {
           translation: {
+            errorMessages: {
+              name: "Ім'я не може бути довшим за 100 символів",
+              phone: "Номер телефону повинен бути у форматі +38XXXXXXXXXX",
+              nick: "Нікнейм має бути у форматі @nickname і довжиною від 5 до 32 символів",
+              sendError: "Помилка під час відправки форми, зверніться до сапорта @mustage_manager",
+            },
             nav: {
               title: "Меню",
               advantage: "Переваги",
@@ -650,6 +656,12 @@ $(async function () {
         },
         ru: {
           translation: {
+            errorMessages: {
+              name: "Имя не может быть длиннее 100 символов",
+              phone: "Номер телефона должен быть в формате +38XXXXXXXXXX",
+              nick: "Никнейм должен быть в формате @nickname и длиной от 5 до 32 символов",
+              sendError: "Ошибка при отправке формы, обратитесь в поддержку @mustage_manager",
+            },
             nav: {
               title: "Меню",
               advantage: "Преимущества",

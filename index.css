@@ -2743,3 +2743,25 @@ body {
     gap: 0px;
   }
 }
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  display: none;
+}
+
+input.error {
+  border: 2px solid red;
+  background-color: #f3909a;
+}
+
+/* .error {
+    border: 2px solid red;
+  } */
+
+.error-visible {
+  display: block;
+}

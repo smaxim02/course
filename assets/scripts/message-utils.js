@@ -3,7 +3,7 @@ const ANALYTIC_CHAT_ID = "-1002190658740";
 const MANAGER_CHAT_URL = "http://t.me/mustage_manager";
 const ACADEMY_BOT_URL = "https://t.me/mustage_academy_bot";
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbySgvfsRCY7xr4cvsNZzXSy_LMDLRXuueVjtA7GkF046wMCvV-eDbqS-GpQ_22onGPb7A/exec";
+  "https://script.google.com/macros/s/AKfycbzA-P7oxUAd9LSwe4PCKRzwocMd5djwUkMwXTD-8jlsu8Bv7IwItH3DbLtJOO6AMmD4Og/exec";
 
 function redirectToChatClick() {
   const params = getQueryParams();
@@ -27,6 +27,62 @@ function redirectToBotClick() {
 
 $("#register_form").submit((event) => {
   event.preventDefault();
+
+  const username = document.getElementById("username");
+  const phone = document.getElementById("phone");
+  const nickname = document.getElementById("nickname");
+
+  let errorMessages = [];
+
+  // Очистити попередні помилки інпутів
+  username.classList.remove("error");
+  phone.classList.remove("error");
+  nickname.classList.remove("error");
+
+  // Очистка помилок для кожного поля
+  const usernameError = document.getElementById("username-error");
+  const phoneError = document.getElementById("phone-error");
+  const nicknameError = document.getElementById("nickname-error");
+
+  usernameError.classList.remove("error-visible");
+  phoneError.classList.remove("error-visible");
+  nicknameError.classList.remove("error-visible");
+
+  // Валідація ім'я
+  if (!username.value) {
+    username.classList.add("error");
+    usernameError.classList.add("error-visible");
+    errorMessages.push("Ім'я не може бути порожнім");
+  } else if (username.value.length > 100) {
+    username.classList.add("error");
+    usernameError.classList.add("error-visible");
+    errorMessages.push("Ім'я не може бути довшим за 100 символів");
+  }
+
+  // Валідація телефону (перевірка на правильний формат)
+  const phoneRegex = /^\+38\d{10}$/;
+  if (!phone.value || !phoneRegex.test(phone.value)) {
+    phone.classList.add("error");
+    phoneError.classList.add("error-visible");
+    errorMessages.push("Номер телефону повинен бути у форматі +38XXXXXXXXXX");
+  }
+
+  // Валідація нікнейму
+  const nicknameRegex = /^@([a-zA-Z0-9_]{5,32})$/;
+  if (!nickname.value) {
+    nickname.classList.add("error");
+    nicknameError.classList.add("error-visible");
+    errorMessages.push("Нікнейм не може бути порожнім");
+  } else if (!nicknameRegex.test(nickname.value)) {
+    nickname.classList.add("error");
+    nicknameError.classList.add("error-visible");
+    errorMessages.push("Нікнейм має бути у форматі @nickname і довжиною від 5 до 32 символів");
+  }
+
+  if (errorMessages.length > 0) {
+    return;
+  }
+
   const form = $("#register_form").serializeArray();
 
   let message = "<b>Пользователь отправил форму:</b>\n";
@@ -38,13 +94,13 @@ $("#register_form").submit((event) => {
   message += getParamString(params);
 
   console.log("message", message);
-  sendMessage(message, true);
   sendToGoogleScript({
     name: form[0].value,
     phone: form[1].value,
     username: form[2].value,
     ...params,
   });
+  // sendMessage(message, true);
 });
 
 function getQueryParams() {
@@ -103,6 +159,7 @@ function sendMessage(message, isRedirect = false) {
  * Send data to Google Apps Script
  * @param {*} data
  */
+
 function sendToGoogleScript(data) {
   fetch(GOOGLE_SCRIPT_URL, {
     method: "POST",

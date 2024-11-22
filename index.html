@@ -1948,7 +1948,6 @@
               <form id="register_form" class="register__form">
                 <div class="register__form-content">
                   <span class="text-headline-3 text-center" data-i18n="register.form_title">Форма</span>
-
                   <div class="divider"></div>
 
                   <div class="column gap-8">
@@ -1963,6 +1962,9 @@
                         class="form__input"
                         autocomplete="name"
                       />
+                    </div>
+                    <div data-i18n="errorMessages.name" id="username-error" class="error-message">
+                      Ім'я не може бути довшим за 100 символів
                     </div>
                   </div>
 
@@ -1979,6 +1981,9 @@
                         autocomplete="tel"
                       />
                     </div>
+                    <div data-i18n="errorMessages.phone" id="phone-error" class="error-message">
+                      Номер телефону повинен бути у форматі +38XXXXXXXXXX
+                    </div>
                   </div>
 
                   <div class="column gap-8">
@@ -1992,6 +1997,9 @@
                         placeholder="@nickname"
                         class="form__input"
                       />
+                    </div>
+                    <div data-i18n="errorMessages.nick" id="nickname-error" class="error-message">
+                      Нікнейм має бути у форматі @nickname і довжиною від 5 до 32 символів
                     </div>
                   </div>
                 </div>
