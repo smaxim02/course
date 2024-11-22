@@ -1,12 +1,3 @@
-// const ANALYTIC_BOT_TOKEN = "7766125760:AAENa5zIjyAQu3UOeP7BBgooRw2DYeiRPSI";
-const ANALYTIC_BOT_TOKEN = "7697839478:AAGlCL5ro6-2T59xvwN1xhDjUtc-J7VoC1o";
-const ANALYTIC_CHAT_ID = "-1002333617735";
-// const ANALYTIC_CHAT_ID = "-1002190658740";
-const MANAGER_CHAT_URL = "http://t.me/mustage_manager";
-const ACADEMY_BOT_URL = "https://t.me/mustage_academy_bot";
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyOBtVC7oRXRaRowePBYLua2Im9eyj_9HF1MD_zl_-yWUSppb6hOaprXhMvOV-9tyWgxw/exec";
-
 function redirectToChatClick() {
   const params = getQueryParams();
   let message = "<b>Пользователь перешёл в чат:</b>\n";
