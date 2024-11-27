@@ -27,12 +27,10 @@ $("#register_form").submit((event) => {
 
   let errorMessages = [];
 
-  // Очистити попередні помилки інпутів
   username.classList.remove("error");
   phone.classList.remove("error");
   nickname.classList.remove("error");
 
-  // Очистка помилок для кожного поля
   const usernameError = document.getElementById("username-error");
   const phoneError = document.getElementById("phone-error");
   const nicknameError = document.getElementById("nickname-error");
@@ -41,7 +39,6 @@ $("#register_form").submit((event) => {
   phoneError.classList.remove("error-visible");
   nicknameError.classList.remove("error-visible");
 
-  // Валідація ім'я
   if (!username.value) {
     username.classList.add("error");
     usernameError.classList.add("error-visible");
@@ -52,7 +49,6 @@ $("#register_form").submit((event) => {
     errorMessages.push("Ім'я не може бути довшим за 100 символів");
   }
 
-  // Валідація телефону (перевірка на правильний формат)
   const phoneRegex = /^\+38\d{10}$/;
   if (!phone.value || !phoneRegex.test(phone.value)) {
     phone.classList.add("error");
@@ -60,7 +56,6 @@ $("#register_form").submit((event) => {
     errorMessages.push("Номер телефону повинен бути у форматі +38XXXXXXXXXX");
   }
 
-  // Валідація нікнейму
   const nicknameRegex = /^@([a-zA-Z0-9_]{3,32})$/;
   if (!nickname.value) {
     nickname.classList.add("error");
@@ -86,7 +81,6 @@ $("#register_form").submit((event) => {
   const params = getQueryParams();
   message += getParamString(params);
 
-  console.log("message", message);
   sendToGoogleScript({
     message: "Пользователь отправил форму:",
     name: form[0].value,
@@ -94,6 +88,7 @@ $("#register_form").submit((event) => {
     username: form[2].value,
     ...params,
   });
+
   sendMessage(message, true);
 });
 
@@ -123,66 +118,57 @@ function getParamString(queryParams) {
   return message;
 }
 
-/**
- * Send message to Analytic chat
- * @param {*} message
- */
 function sendMessage(message, isRedirect = false) {
-  const url = `https://api.telegram.org/bot${ANALYTIC_BOT_TOKEN}/sendMessage?chat_id=${ANALYTIC_CHAT_ID}&parse_mode=html&text=${encodeURIComponent(
-    message
-  )}`;
-
-  $.ajax({
-    url: url,
+  fetch(`http://${BACK_HOST}:${BACK_PORT}/api/send-message`, {
     method: "POST",
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      if (isRedirect) {
-        const currentParams = window.location.search;
-
-        const newUrl = `confirm.html${currentParams}`;
-
-        window.location.href = newUrl;
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ message }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        if (isRedirect) {
+          const currentParams = window.location.search;
+          const newUrl = `confirm.html${currentParams}`;
+          window.location.href = newUrl;
+        }
+      } else {
+        console.error("Failed to send message to Telegram");
+        showError();
       }
-    },
-    error: (xhr, status, error) => {
-      console.log("Your form was not sent successfully.");
-      console.error(error, xhr);
-
-      const errorElement = document.getElementById("form-error");
-      errorElement.style.display = "block";
-    },
-  });
+    })
+    .catch((error) => {
+      console.error("Error sending message:", error);
+      showError();
+    });
 }
 
-/**
- * Send data to Google Apps Script
- * @param {*} data
- */
-
 function sendToGoogleScript(data) {
-  fetch(GOOGLE_SCRIPT_URL, {
+  fetch(`http://${BACK_HOST}:${BACK_PORT}/api/send-to-google-script`, {
     method: "POST",
-    mode: "no-cors",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   })
     .then((response) => {
-      console.log("Data sent to Google Sheet");
+      if (response.ok) {
+        console.log("Data sent to Google Script");
+      } else {
+        console.error("Failed to send data to Google Script");
+      }
     })
     .catch((error) => {
-      console.error("Error sending data to Google Sheet:", error);
+      console.error("Error sending data to Google Script:", error);
     });
 }
 
-/**
- * Redirect user to Manager chat
- * @param {*} url
- * @param {*} refId
- */
+function showError() {
+  const errorElement = document.getElementById("form-error");
+  errorElement.style.display = "block";
+}
+
 function redirectTo(url, refId = undefined) {
   const params = refId ? `?start=${refId}` : "";
   window.location.href = url + params;
