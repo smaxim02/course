@@ -1,3 +1,7 @@
+const submitButton = document.getElementById("register");
+const loader = submitButton.querySelector(".loader");
+const buttonText = submitButton.querySelector(".button-text");
+
 function redirectToChatClick() {
   const params = getQueryParams();
   let message = "<b>Пользователь перешёл в чат:</b>\n";
@@ -27,49 +31,53 @@ $("#register_form").submit((event) => {
 
   let errorMessages = [];
 
-  username.classList.remove("error");
-  phone.classList.remove("error");
-  nickname.classList.remove("error");
+  username?.classList.remove("error");
+  phone?.classList.remove("error");
+  nickname?.classList.remove("error");
 
   const usernameError = document.getElementById("username-error");
   const phoneError = document.getElementById("phone-error");
   const nicknameError = document.getElementById("nickname-error");
 
-  usernameError.classList.remove("error-visible");
-  phoneError.classList.remove("error-visible");
-  nicknameError.classList.remove("error-visible");
+  usernameError?.classList.remove("error-visible");
+  phoneError?.classList.remove("error-visible");
+  nicknameError?.classList.remove("error-visible");
 
   if (!username.value) {
-    username.classList.add("error");
-    usernameError.classList.add("error-visible");
+    username?.classList.add("error");
+    usernameError?.classList.add("error-visible");
     errorMessages.push("Ім'я не може бути порожнім");
   } else if (username.value.length > 100) {
-    username.classList.add("error");
-    usernameError.classList.add("error-visible");
+    username?.classList.add("error");
+    usernameError?.classList.add("error-visible");
     errorMessages.push("Ім'я не може бути довшим за 100 символів");
   }
 
   const phoneRegex = /^\+38\d{10}$/;
   if (!phone.value || !phoneRegex.test(phone.value)) {
-    phone.classList.add("error");
-    phoneError.classList.add("error-visible");
+    phone?.classList.add("error");
+    phoneError?.classList.add("error-visible");
     errorMessages.push("Номер телефону повинен бути у форматі +38XXXXXXXXXX");
   }
 
   const nicknameRegex = /^@([a-zA-Z0-9_]{3,32})$/;
   if (!nickname.value) {
-    nickname.classList.add("error");
-    nicknameError.classList.add("error-visible");
+    nickname?.classList.add("error");
+    nicknameError?.classList.add("error-visible");
     errorMessages.push("Нікнейм не може бути порожнім");
   } else if (!nicknameRegex.test(nickname.value)) {
-    nickname.classList.add("error");
-    nicknameError.classList.add("error-visible");
+    nickname?.classList.add("error");
+    nicknameError?.classList.add("error-visible");
     errorMessages.push("Нікнейм має бути у форматі @nickname і довжиною від 3 до 32 символів");
   }
 
   if (errorMessages.length > 0) {
     return;
   }
+
+  submitButton?.classList.add("disabled");
+  buttonText?.classList.add("hidden");
+  loader?.classList.remove("hidden");
 
   const form = $("#register_form").serializeArray();
 
@@ -141,6 +149,11 @@ function sendMessage(message, isRedirect = false) {
     .catch((error) => {
       console.error("Error sending message:", error);
       showError();
+    })
+    .finally(() => {
+      submitButton?.classList.remove("disabled");
+      buttonText?.classList.remove("hidden");
+      loader?.classList.add("hidden");
     });
 }
 
@@ -171,5 +184,6 @@ function showError() {
 
 function redirectTo(url, refId = undefined) {
   const params = refId ? `?start=${refId}` : "";
+
   window.location.href = url + params;
 }

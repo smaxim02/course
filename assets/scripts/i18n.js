@@ -7,23 +7,23 @@ const footerRu = document.getElementById("footer_ru");
 const menuRu = document.getElementById("menu_ru");
 
 const activeRuLanguage = () => {
-  headerUk.classList.remove("button__ghost--active");
-  footerUk.classList.remove("button__ghost--active");
-  menuUk.classList.remove("button__ghost--active");
+  headerUk?.classList.remove("button__ghost--active");
+  footerUk?.classList.remove("button__ghost--active");
+  menuUk?.classList.remove("button__ghost--active");
 
-  headerRu.classList.add("button__ghost--active");
-  footerRu.classList.add("button__ghost--active");
-  menuRu.classList.add("button__ghost--active");
+  headerRu?.classList.add("button__ghost--active");
+  footerRu?.classList.add("button__ghost--active");
+  menuRu?.classList.add("button__ghost--active");
 };
 
 const activeUkLanguage = () => {
-  headerRu.classList.remove("button__ghost--active");
-  footerRu.classList.remove("button__ghost--active");
-  menuRu.classList.remove("button__ghost--active");
+  headerRu?.classList.remove("button__ghost--active");
+  footerRu?.classList.remove("button__ghost--active");
+  menuRu?.classList.remove("button__ghost--active");
 
-  headerUk.classList.add("button__ghost--active");
-  footerUk.classList.add("button__ghost--active");
-  menuUk.classList.add("button__ghost--active");
+  headerUk?.classList.add("button__ghost--active");
+  footerUk?.classList.add("button__ghost--active");
+  menuUk?.classList.add("button__ghost--active");
 };
 
 const setLanguage = (lang) => {
