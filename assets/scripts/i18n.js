@@ -7,23 +7,23 @@ const footerRu = document.getElementById("footer_ru");
 const menuRu = document.getElementById("menu_ru");
 
 const activeRuLanguage = () => {
-  headerUk.classList.remove("button__ghost--active");
-  footerUk.classList.remove("button__ghost--active");
-  menuUk.classList.remove("button__ghost--active");
+  headerUk?.classList.remove("button__ghost--active");
+  footerUk?.classList.remove("button__ghost--active");
+  menuUk?.classList.remove("button__ghost--active");
 
-  headerRu.classList.add("button__ghost--active");
-  footerRu.classList.add("button__ghost--active");
-  menuRu.classList.add("button__ghost--active");
+  headerRu?.classList.add("button__ghost--active");
+  footerRu?.classList.add("button__ghost--active");
+  menuRu?.classList.add("button__ghost--active");
 };
 
 const activeUkLanguage = () => {
-  headerRu.classList.remove("button__ghost--active");
-  footerRu.classList.remove("button__ghost--active");
-  menuRu.classList.remove("button__ghost--active");
+  headerRu?.classList.remove("button__ghost--active");
+  footerRu?.classList.remove("button__ghost--active");
+  menuRu?.classList.remove("button__ghost--active");
 
-  headerUk.classList.add("button__ghost--active");
-  footerUk.classList.add("button__ghost--active");
-  menuUk.classList.add("button__ghost--active");
+  headerUk?.classList.add("button__ghost--active");
+  footerUk?.classList.add("button__ghost--active");
+  menuUk?.classList.add("button__ghost--active");
 };
 
 const setLanguage = (lang) => {
@@ -62,6 +62,12 @@ $(async function () {
       resources: {
         uk: {
           translation: {
+            errorMessages: {
+              name: "Ім'я не може бути довшим за 100 символів",
+              phone: "Номер телефону повинен бути у форматі +38XXXXXXXXXX",
+              nick: "Нікнейм має бути у форматі @nickname і довжиною від 3 до 32 символів",
+              sendError: "Помилка під час відправки форми, зверніться до сапорта @mustage_manager",
+            },
             nav: {
               title: "Меню",
               advantage: "Переваги",
@@ -168,7 +174,7 @@ $(async function () {
               spay: "Спай",
               antik: "Антик",
               proxi: "Проксі на місяць",
-              total: "Разoм > 450$",
+              total: "Разoм > 542$",
               but: "але! - ",
               note_start: "Ми давно в темі, тож вибили ",
               note_end: ` для своїх учнів. Ти зможеш зекономити на розхідниках більше 250$ і вкласти ці гроші у бюджет. За
@@ -380,7 +386,7 @@ $(async function () {
               block_3: {
                 material: "1 година 19 хвилин відеоматеріалу",
                 home: "3 домашніх завдання",
-                test: " 4 тестів для кращого засвоєння матеріалу",
+                test: " 4 тести для кращого засвоєння матеріалу",
                 title: "Блок 3. Підготовка до запуску реклами",
                 lesson_1: {
                   title: "Урок 3.1",
@@ -402,7 +408,7 @@ $(async function () {
               block_4: {
                 material: "52 хвилини відеоматеріалу",
                 home: "4 домашніх завдання",
-                test: " 3 тестів для кращого засвоєння матеріалу",
+                test: " 3 тести для кращого засвоєння матеріалу",
                 title: "Блок 4. Створення ефективних креативів.",
                 lesson_1: {
                   title: "Урок 4.1",
@@ -473,7 +479,7 @@ $(async function () {
               },
               block_7: {
                 material: "48 хвилини відеоматеріалу",
-                home: "1 домашнэ завдання",
+                home: "1 домашнє завдання",
                 test: "1 тест (18 питань) для кращого засвоєння матеріалу",
                 title: "Блок 7. Робота з автозаливом FBTOOL",
                 lesson_1: {
@@ -513,10 +519,10 @@ $(async function () {
               start: {
                 title: "Стартовий",
                 all_free: "все, що входить у пакет «Безкоштовний»",
-                dolphyn: "тариф Base на 100 профілів у Dolphyn Anty на місяць БЕЗКОШТОВНО",
+                dolphyn: "тариф Pro на 300 профілів у Linken Sphere на місяць БЕЗКОШТОВНО",
                 spay: "спай Adheart на місяць безкоштовно",
                 king: "30 саморегів і 5 кінгів",
-                creo: "2 динамічних креоси за вашим ТЗ",
+                creo: "4 адаптації крео на ваш оффер",
                 proxy: "проксі в подарунок на місяць",
               },
               base: {
@@ -560,7 +566,7 @@ $(async function () {
             answer: {
               title: `Відповідаємо на часті запитання`,
               question1: {
-                title: "С какими ГЕО будем работать?",
+                title: "З якими ГЕО будемо працювати?",
                 answer: `Ти зможеш самостійно обирати ГЕО для роботи. Для новачків ми рекомендуємо починати з країн із менш
                   жорсткою конкуренцією, що дозволить тобі швидше освоїтися та отримати перші результати. Ми допоможемо
                   тобі обрати ГЕО залежно від твоїх цілей та рівня досвіду.`,
@@ -650,6 +656,12 @@ $(async function () {
         },
         ru: {
           translation: {
+            errorMessages: {
+              name: "Имя не может быть длиннее 100 символов",
+              phone: "Номер телефона должен быть в формате +38XXXXXXXXXX",
+              nick: "Никнейм должен быть в формате @nickname и длиной от 3 до 32 символов",
+              sendError: "Ошибка при отправке формы, обратитесь в поддержку @mustage_manager",
+            },
             nav: {
               title: "Меню",
               advantage: "Преимущества",
@@ -757,7 +769,7 @@ $(async function () {
               spay: "Спай",
               antik: "Антик",
               proxi: "Прокси в месяц",
-              total: "Вместе > 450$",
+              total: "Вместе > 542$",
               but: "но! - ",
               note_start: "Мы давно в теме, поэтому выбили",
               note_end: ` для своих учащихся. Ты сможешь сэкономить на расходниках больше 250$ и вложить эти деньги в бюджет. За
@@ -1103,10 +1115,10 @@ $(async function () {
               start: {
                 title: "Стартовый",
                 all_free: `все, что входит в пакет "Бесплатный"`,
-                dolphyn: "тариф Base на 100 профилей в Dolphyn Anty в месяц БЕСПЛАТНО",
+                dolphyn: "тариф Pro на 300 профилей в Linken Sphere в месяц БЕСПЛАТНО",
                 spay: "спай Adheart в месяц бесплатно",
                 king: "30 саморегов и 5 кингов",
-                creo: "2 динамических креоса по вашему ТС",
+                creo: "4 адаптации крео на ваш оффер",
                 proxy: "прокси в подарок в месяц",
               },
               base: {
@@ -1231,8 +1243,8 @@ $(async function () {
             Азербайджан: "Азербайджан",
             and: "и",
             confirm: {
-              title: "Для оформления заявки!",
-              subtitle: "Ознакомьтесь с нашим менеджером",
+              title: "Спасибо за оставленную заявку!",
+              subtitle: "Ожидайте сообщение от нашего менеджера.",
               button: "Зарегистрируйтесь через чат-бот",
             },
           },
