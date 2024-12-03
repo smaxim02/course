@@ -139,9 +139,11 @@ body {
   border-radius: 1200px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.8) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(115px);
+  -webkit-backdrop-filter: blur(115px);
 }
 
 .button {
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -325,6 +327,7 @@ body {
   align-items: flex-start;
   background: #f7f7f726;
   backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
   width: 260px;
   height: 640px;
   padding: 64px 16px 80px 16px;
@@ -355,6 +358,7 @@ body {
   gap: 10px;
   border-radius: 0px 0px 80px 80px;
   backdrop-filter: blur(100px);
+  -webkit-backdrop-filter: blur(100px);
   background: #f7f7f726;
   z-index: 1;
 }
@@ -425,6 +429,7 @@ body {
   z-index: -1;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.8) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(165px);
+  -webkit-backdrop-filter: blur(165px);
 }
 
 .text-medium {
@@ -691,6 +696,7 @@ body {
   right: -100px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.64) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(190px);
+  -webkit-backdrop-filter: blur(190px);
   z-index: -1;
 }
 
@@ -947,6 +953,7 @@ body {
   left: 100px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.64) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(160px);
+  -webkit-backdrop-filter: blur(160px);
   z-index: -1;
 }
 
@@ -1086,6 +1093,7 @@ body {
   left: -600px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.64) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(176px);
+  -webkit-backdrop-filter: blur(176px);
   z-index: -1;
 }
 
@@ -1149,6 +1157,7 @@ body {
   left: 0;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.64) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(167px);
+  -webkit-backdrop-filter: blur(167px);
   border-radius: 1200px;
   z-index: -1;
 }
@@ -1385,6 +1394,7 @@ body {
 .slider__gradient {
   top: 370px;
   backdrop-filter: blur(113px);
+  -webkit-backdrop-filter: blur(113px);
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.4) 0%, rgba(13, 13, 13, 0) 100%);
 }
 
@@ -1474,7 +1484,7 @@ body {
   line-height: 22.4px;
 }
 
-.deal-wheel>* {
+.deal-wheel > * {
   grid-area: spinner;
 }
 
@@ -1621,6 +1631,7 @@ body {
   background: #f7f7f726;
   border: 1px solid #f7f7f7;
   backdrop-filter: blur(80px);
+  -webkit-backdrop-filter: blur(80px);
   width: 450px;
 }
 
@@ -1688,6 +1699,7 @@ body {
   left: -400px;
   background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.72) 0%, rgba(13, 13, 13, 0) 100%);
   backdrop-filter: blur(175px);
+  -webkit-backdrop-filter: blur(175px);
   border-radius: 1200px;
   z-index: -1;
 }
@@ -1743,8 +1755,8 @@ body {
   padding: 16px 32px;
   gap: 40px;
   border-radius: 24px;
-  background: #F7F7F726;
-  border: 1px solid #F7F7F7;
+  background: #f7f7f726;
+  border: 1px solid #f7f7f7;
   transition: all 300ms ease-out;
   cursor: pointer;
 }
@@ -1921,6 +1933,7 @@ body {
     margin-left: -118px;
     top: 200px;
     backdrop-filter: blur(115px);
+    -webkit-backdrop-filter: blur(115px);
   }
 
   .article {
@@ -2129,6 +2142,7 @@ body {
     top: -550px;
     left: -230px;
     backdrop-filter: blur(113px);
+    -webkit-backdrop-filter: blur(113px);
   }
 
   .audience {
@@ -2172,6 +2186,7 @@ body {
     width: 950px;
     background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.8) 0%, rgba(13, 13, 13, 0) 100%);
     backdrop-filter: blur(107px);
+    -webkit-backdrop-filter: blur(107px);
   }
 
   .whom__wrapper {
@@ -2236,6 +2251,7 @@ body {
     top: -150px;
     left: -350px;
     backdrop-filter: blur(113px);
+    -webkit-backdrop-filter: blur(113px);
   }
 
   .tariff {
@@ -2271,6 +2287,7 @@ body {
     left: -150px;
     background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.8) 0%, rgba(13, 13, 13, 0) 100%);
     backdrop-filter: blur(113px);
+    -webkit-backdrop-filter: blur(113px);
   }
 
   .register__wrapper {
@@ -2491,6 +2508,7 @@ body {
     left: -300px;
     background: radial-gradient(50% 50% at 50% 50%, rgba(103, 50, 217, 0.8) 0%, rgba(13, 13, 13, 0) 100%);
     backdrop-filter: blur(113px);
+    -webkit-backdrop-filter: blur(113px);
   }
 
   .footer {
@@ -2544,7 +2562,8 @@ body {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1024px) {}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+}
 
 @media only screen and (min-width: 1025px) and (max-width: 1400px) {
   .header {
@@ -2751,8 +2770,8 @@ body {
 }
 
 .error-message {
-  background-color: #FFE0DE;
-  color: #FD7542;
+  background-color: #ffe0de;
+  color: #fd7542;
   padding: 5px 10px;
   border-radius: 15px;
   font-size: 14px;
@@ -2762,10 +2781,9 @@ body {
 }
 
 input.error {
-  border: 1px solid #D95043;
-  background-color: #FFE0DE;
+  border: 1px solid #d95043;
+  background-color: #ffe0de;
 }
-
 
 .error-visible {
   display: block;

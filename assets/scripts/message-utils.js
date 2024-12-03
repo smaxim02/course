@@ -1,6 +1,13 @@
-const submitButton = document.getElementById("register");
-const loader = submitButton.querySelector(".loader");
-const buttonText = submitButton.querySelector(".button-text");
+const submitButton = document?.getElementById("register");
+const loader = submitButton?.querySelector(".loader");
+const buttonText = submitButton?.querySelector(".button-text");
+
+let referrer = document.referrer;
+if (referrer) {
+  referrer = referrer;
+} else {
+  referrer = "Не вказано";
+}
 
 function redirectToChatClick() {
   const params = getQueryParams();
@@ -94,6 +101,7 @@ $("#register_form").submit((event) => {
     name: form[0].value,
     phone: form[1].value,
     username: form[2].value,
+    url: referrer,
     ...params,
   });
 
